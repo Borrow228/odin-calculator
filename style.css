@@ -14,3 +14,41 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.gigacontainer {
+    background-color: aquamarine;
+    border: 2px solid black;
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.button-row {
+    display: flex;
+    gap: 15px;
+    margin: 10px;
+    justify-content: space-evenly;
+}
+
+.button {
+    background-color: pink;
+    font-size: 1em;
+    padding: 40px;
+    border-radius: 50px;
+    flex-grow: 1;
+    max-width: 100px;
+}
+
+.button.last-row {
+    background-color: orange;
+}
+
+#display {
+    background-color: white;
+    border: 2px solid black;
+    font-size: 2em;
+    justify-content: end;
+    padding: 10px;
+}
+
