@@ -27,10 +27,10 @@ function divide (a, b) {
 
 function operate(a, b, c) {
     switch (c) {
-        case "+": return add(a, b);
-        case "-": return subtract(a, b);
-        case "*": return multiply(a, b);
-        case "/": return divide(a, b);
+        case "+": return Math.round(add(a, b) * 10000) / 10000;
+        case "-": return Math.round(subtract(a, b) * 10000) / 10000;
+        case "*": return Math.round(mulitply(a, b) * 10000) / 10000;
+        case "/": return Math.round(divide(a, b) * 10000) / 10000;
     }
 }
 
@@ -44,6 +44,8 @@ function pressNumber(number) {
     if (operator !== "" && state == 0) {
         displayValue = number;
         state = 1;
+    } else if (displayValue == 0 && displayValue.toString().indexOf('.') > -1) { 
+        displayValue += number
     } else if (displayValue == 0) {
         displayValue = number
     } else if (displayValue !== 0) {
@@ -85,6 +87,19 @@ function pressEqual() {
     }
 }
 
+function pressPoint() {
+    if (displayValue.toString().indexOf('.') > -1) {
+        displayValue
+    } else {
+    displayValue += ".";
+    display.textContent = displayValue;
+    }
+}
+
+function pressBack() {
+    displayValue = Math.floor(displayValue / 10) // -> 1234;
+    display.textContent = displayValue;
+}
 
 const numbers = document.querySelectorAll("button.number");
 numbers.forEach((number) => {
@@ -111,3 +126,12 @@ operators.forEach((operator) => {
       equality.addEventListener("click", () => {
             pressEqual();
         });
+    
+    const pointity = document.querySelector("button.point");
+      pointity.addEventListener("click", () => {
+            pressPoint();
+        });
+        const deletity = document.querySelector("button.back");
+        deletity.addEventListener("click", () => {
+              pressBack();
+          });
